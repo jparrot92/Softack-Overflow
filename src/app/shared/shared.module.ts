@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { AppHeaderComponent } from './app-header/app-header.component';
 
 // Material Angular
 import {
@@ -32,7 +33,15 @@ const materialmModules = [
 ];
 
 @NgModule({
-    imports: materialmModules,
-    exports: materialmModules
+    declarations: [
+        AppHeaderComponent
+    ],
+    imports: [
+        materialmModules
+    ],
+    exports: [
+        materialmModules,
+        AppHeaderComponent
+    ]
 })
 export class SharedModule {}
