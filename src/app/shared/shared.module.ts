@@ -1,5 +1,9 @@
 import { NgModule } from '@angular/core';
-import { AppHeaderComponent } from './app-header/app-header.component';
+import { HeaderComponent } from './header/header.component';
+
+// Translation
+import { TranslateModule } from '@ngx-translate/core';
+import { HttpClientModule } from '@angular/common/http';
 
 // Material Angular
 import {
@@ -34,14 +38,15 @@ const materialmModules = [
 
 @NgModule({
     declarations: [
-        AppHeaderComponent
+        HeaderComponent
     ],
     imports: [
-        materialmModules
+        materialmModules,
+        TranslateModule,
+        HttpClientModule,
     ],
     exports: [
-        materialmModules,
-        AppHeaderComponent
+        HeaderComponent
     ]
 })
 export class SharedModule {}
