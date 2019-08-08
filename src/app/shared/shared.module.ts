@@ -8,32 +8,12 @@ import { HttpClientModule } from '@angular/common/http';
 // Material Angular
 import {
     MatToolbarModule,
-    MatIconModule,
-    MatCardModule,
-    MatButtonModule,
-    MatInputModule,
-    MatListModule,
-    MatGridListModule,
-    MatRadioModule,
-    MatProgressSpinnerModule,
-    MatMenuModule,
-    MatSnackBarModule,
-    MatTabsModule
+    MatIconModule
 } from '@angular/material';
 
 const materialmModules = [
     MatToolbarModule,
-    MatIconModule,
-    MatCardModule,
-    MatButtonModule,
-    MatInputModule,
-    MatListModule,
-    MatGridListModule,
-    MatRadioModule,
-    MatProgressSpinnerModule,
-    MatMenuModule,
-    MatSnackBarModule,
-    MatTabsModule
+    MatIconModule
 ];
 
 @NgModule({
