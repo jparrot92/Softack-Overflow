@@ -1,7 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
+/* Routing Module */
 import { AppRoutingModule } from './app-routing.module';
+
+/* Routing Module */
 import { AppComponent } from './app.component';
 
 // Material Angular
@@ -13,7 +16,9 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClient } from '@angular/common/http';
 
+/* Feature Modules */
 import { SharedModule } from '@app/shared/shared.module';
+import { QuestionModule } from '@app/question/question.module';
 
 
 @NgModule({
@@ -34,6 +39,7 @@ import { SharedModule } from '@app/shared/shared.module';
       }
     }),
     SharedModule,
+    QuestionModule
   ],
   providers: [],
   bootstrap: [AppComponent]
