@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 /* Routing Module */
 import { AppRoutingModule } from './app-routing.module';
 
-/* Routing Module */
+/* App Root */
 import { AppComponent } from './app.component';
 
 // Material Angular
