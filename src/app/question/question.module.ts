@@ -1,21 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+// Share module
+import { SharedModule } from '@app/shared/shared.module';
+
 // Routing question
 import { QuestionRoutingModule } from './question-routing.modules';
-
-// Translation
-import { TranslateModule } from '@ngx-translate/core';
-import { HttpClientModule } from '@angular/common/http';
-
-// Material Angular
-import {
-  MatCardModule,
-} from '@angular/material';
-
-const materialmModules = [
-  MatCardModule
-];
 
 // Angular Moment
 import { MomentModule } from 'ngx-moment';
@@ -23,14 +13,17 @@ import { MomentModule } from 'ngx-moment';
 // Components question
 import { QuestionDetailComponent } from './question-detail/question-detail.component';
 
+// Modul answer
+import { AnswerModule } from '@app/answer/answer.module';
+
+
 @NgModule({
   imports: [
     CommonModule,
+    SharedModule,
     QuestionRoutingModule,
-    TranslateModule,
-    HttpClientModule,
-    materialmModules,
-    MomentModule
+    MomentModule,
+    AnswerModule
   ],
   declarations: [QuestionDetailComponent]
 })

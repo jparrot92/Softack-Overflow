@@ -2,7 +2,11 @@
   "header": {
     "title": "SoftackOverflow"
   },
-  "question":{
-    "answer": "Respuesta"
+  "question": {
+    "answer": "Respuesta",
+    "notAnswers": "Se el primero en responder esta pregunta"
+  },
+  "answer": {
+    "reply": "Responder"
   }
 }

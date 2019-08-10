@@ -16,15 +16,17 @@
 </mat-card>
 <div class="answers">
   <h3 id="title">{{ 'question.answer' | translate }}</h3>
-  <ul class="answers-list">
-    <li>
+  <ul class="answers-list" *ngIf="question.answers.length > 0">
+    <li *ngFor="let answer of question.answers">
       <h5>
-        Anna balez
-        <small>hece unos segundos</small>
+        {{ answer.user.firstName }} {{ answer.user.lastName }}
+        <small>{{ answer.createdAt | amLocale:'es' | amTimeAgo }}</small>
       </h5>
       <p class="description">
-        Yo tengo la respuesta!
+        {{ answer.description }}
       </p>
     </li>
   </ul>
+  <p *ngIf="question.answers.length === 0">{{ 'question.notAnswers' | translate }}</p>
+  <app-answer-form [question]="question" class="answer-form"></app-answer-form>
 </div>
