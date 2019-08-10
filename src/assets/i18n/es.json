@@ -3,7 +3,8 @@
     "title": "SoftackOverflow"
   },
   "question": {
-    "answer": "Respuesta"
+    "answer": "Respuesta",
+    "notAnswers": "Se el primero en responder esta pregunta"
   },
   "answer": {
     "reply": "Responder"

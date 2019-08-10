@@ -27,6 +27,6 @@
       </p>
     </li>
   </ul>
-  <p *ngIf="question.answers.length === 0">Se el primero en responder esta pregunta</p>
-  <app-answer-form></app-answer-form>
+  <p *ngIf="question.answers.length === 0">{{ 'question.notAnswers' | translate }}</p>
+  <app-answer-form class="answer-form"></app-answer-form>
 </div>
