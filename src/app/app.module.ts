@@ -19,6 +19,7 @@ import { HttpClient } from '@angular/common/http';
 /* Feature Modules */
 import { SharedModule } from '@app/shared/shared.module';
 import { QuestionModule } from '@app/question/question.module';
+import { AuthModule } from '@app/auth/auth.module';
 
 
 @NgModule({
@@ -39,7 +40,8 @@ import { QuestionModule } from '@app/question/question.module';
       }
     }),
     SharedModule,
-    QuestionModule
+    QuestionModule,
+    AuthModule
   ],
   providers: [],
   bootstrap: [AppComponent]

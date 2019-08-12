@@ -1,11 +1,5 @@
-import { Question } from '../question/question';
-
-export class User {
-  constructor(
-    public firstName: string,
-    public lastName: string
-  ) { }
-}
+import { Question } from '@app/question/question';
+import { User } from '@app/auth/user';
 
 export class Answer {
   constructor(
