@@ -1,10 +1,19 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
-import { QuestionDetailComponent } from '../question/question-detail/question-detail.component';
+import { QuestionListComponent } from './question-list/question-list.component';
+import { QuestionDetailComponent } from './question-detail/question-detail.component';
+import { QuestionFormComponent } from './question-form/question-form.component';
 
 const routes = [
-  { path: 'contact', component: QuestionDetailComponent }
+  { path: '', component: QuestionListComponent, pathMatch: 'full' },
+  {
+    path: 'questions', children: [
+      { path: '', component: QuestionListComponent },
+      { path: 'new', component: QuestionFormComponent},
+      { path: ':id', component: QuestionDetailComponent }
+    ]
+  }
 ];
 
 @NgModule({
