@@ -3,12 +3,13 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "start:server": "nodemon server/index.ts --exec ts-node"
+    "start": "concurrently -r \"npm run start:server\" \"npm run start:client\" ",
+    "start:server": "nodemon server/index.ts --exec ts-node",
+    "start:client": "ng serve"
   },
   "private": true,
   "dependencies": {
