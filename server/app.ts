@@ -1,16 +1,22 @@
-import express, { Application } from 'express';
+import express from 'express';
+import * as Routes from './routes';
 
 export class App {
 
-  private app: Application;
+  private app: express.Application;
 
   constructor(private port?: number | string) {
     this.app = express();
     this.settings();
+    this.routes();
   }
 
-  settings() {
+  private settings() {
     this.app.set('port', this.port || process.env.PORT || 3000);
+  }
+
+  private routes() {
+    Routes.init(this.app);
   }
 
   async listen() {
