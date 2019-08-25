@@ -1,4 +1,5 @@
 import express from 'express';
+import bodyParser from 'body-parser';
 import * as Routes from './routes';
 
 export class App {
@@ -7,17 +8,25 @@ export class App {
 
   constructor(private port?: number | string) {
     this.app = express();
-    this.settings();
-    this.cors();
+    this.configure();
     this.routes();
+    this.settings();
   }
 
-  private settings() {
-    this.app.set('port', this.port || process.env.PORT || 3000);
+  private configure() {
+    this.app.use(bodyParser.urlencoded({
+      extended: false
+    }));
+    this.app.use(bodyParser.json());
+    this.cors();
   }
 
   private routes() {
     Routes.init(this.app);
+  }
+
+  private settings() {
+    this.app.set('port', this.port || process.env.PORT || 3000);
   }
 
   private cors() {
