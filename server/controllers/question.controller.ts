@@ -37,3 +37,22 @@ export async function getQuestionById(req: Request, res: Response): Promise<Resp
   }
 }
 
+export async function addQuestion(req: Request, res: Response): Promise<Response | void> {
+  try {
+    const question = req.body;
+    question.id = +new Date();
+    question.user = {
+      firstName: 'Jaume',
+      lastName: 'Parrot',
+      email: 'jparrot@gmail.com',
+      password: '123456'
+    };
+    question.createdAt = new Date();
+    question.answers = [];
+    questions.push(question);
+    res.status(201).json(question);
+  } catch (e) {
+    console.log(e);
+  }
+}
+
