@@ -9,6 +9,7 @@ import { Question } from './question';
 import { environment } from '@env/environment';
 
 import urljoin from 'url-join';
+import { Answer } from '@app/answer/answer';
 
 @Injectable()
 export class QuestionService {
@@ -38,6 +39,22 @@ export class QuestionService {
 
   addQuestion(question: Question): Observable<Question> {
     return this.http.post<Question>(this.questionsUrl, question).pipe(
+      catchError(e => {
+        return throwError(e);
+      })
+    );
+  }
+
+  addAnswer(answer: Answer): Observable<Answer> {
+    const a = {
+      description: answer.description,
+      question: {
+        id: answer.question.id,
+      }
+    };
+
+    const url = urljoin(this.questionsUrl, answer.question.id.toString(), 'answers');
+    return this.http.post<Answer>(url, a).pipe(
       catchError(e => {
         return throwError(e);
       })
