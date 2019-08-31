@@ -9,7 +9,7 @@ export const users = [
     lastName: 'Castillo',
     email: 'davecas26@gmail.com',
     password: '123456',
-    _id: 123
+    id: 123
   }
 ];
 
@@ -46,7 +46,7 @@ export async function signin(req: Request, res: Response): Promise<Response | vo
     res.status(200).json({
       message: 'Login succede',
       token,
-      userId: user._id,
+      userId: user.id,
       firstName: user.firstName,
       lastName: user.lastName,
       email: user.email
