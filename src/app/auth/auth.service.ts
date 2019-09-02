@@ -32,6 +32,14 @@ export class AuthService {
       );
   }
 
+  signUp(user: User): Observable<any> {
+    return this.http.post(urljoin(this.usersUrl, 'signup'), user).pipe(
+      catchError(e => {
+        return throwError(e);
+      })
+    );
+  }
+
   login = ({ token, userId, firstName, lastName, email }) => {
     this.currentUser = new User(email, null, firstName, lastName);
     localStorage.setItem('token', token);

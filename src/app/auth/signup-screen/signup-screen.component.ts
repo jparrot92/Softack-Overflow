@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { User } from '../user';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-signup-screen',
@@ -10,6 +11,9 @@ import { User } from '../user';
 export class SignupScreenComponent implements OnInit {
 
   signupForm: FormGroup;
+
+  constructor(private authService: AuthService) { }
+
   ngOnInit() {
     this.signupForm = new FormGroup({
       email: new FormControl(null, [
@@ -28,7 +32,11 @@ export class SignupScreenComponent implements OnInit {
       const { email, password, firstName, lastName } = this.signupForm.value;
 
       const user = new User(email, password, firstName, lastName);
-      console.log(user);
+
+      this.authService.signUp(user).subscribe(
+        this.authService.login,
+        err => console.log(err)
+      );
 
 
     }
