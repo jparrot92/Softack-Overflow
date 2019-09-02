@@ -19,6 +19,8 @@ function comparePasswords(providedPassword, userPassword) {
   return providedPassword === userPassword;
 }
 
+const createToken = (user) => jwt.sign({ user }, secret, { expiresIn: 86400 });
+
 export async function signin(req: Request, res: Response): Promise<Response | void> {
   try {
     const { email, password } = req.body;
@@ -50,8 +52,35 @@ export async function signin(req: Request, res: Response): Promise<Response | vo
       firstName: user.firstName,
       lastName: user.lastName,
       email: user.email
-  });
+    });
 
+  } catch (e) {
+    console.log(e);
+  }
+}
+
+export async function signup(req: Request, res: Response): Promise<Response | void> {
+  try {
+    const { firstName, lastName, email, password } = req.body;
+    const user = {
+      id: +new Date(),
+      firstName,
+      lastName,
+      email,
+      password
+    };
+
+    users.push(user);
+
+    const token = createToken(user);
+    res.status(201).json({
+      message: 'User saved',
+      token,
+      userId: user.id,
+      firstName,
+      lastName,
+      email
+    });
   } catch (e) {
     console.log(e);
   }
