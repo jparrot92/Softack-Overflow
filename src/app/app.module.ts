@@ -21,7 +21,6 @@ import { SharedModule } from '@app/shared/shared.module';
 import { QuestionModule } from '@app/question/question.module';
 import { AuthModule } from '@app/auth/auth.module';
 
-
 @NgModule({
   declarations: [
     AppComponent
@@ -43,7 +42,6 @@ import { AuthModule } from '@app/auth/auth.module';
     QuestionModule,
     AuthModule
   ],
-  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
