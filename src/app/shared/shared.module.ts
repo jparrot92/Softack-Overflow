@@ -42,6 +42,9 @@ const materialModules = [
 // Components
 import { HeaderComponent } from './header/header.component';
 
+// Interceptor
+import { httpInterceptorProviders } from '../http-interceptors/index';
+
 @NgModule({
     declarations: [
         HeaderComponent
@@ -58,6 +61,9 @@ import { HeaderComponent } from './header/header.component';
         TranslateModule,
         HttpClientModule,
         HeaderComponent
-    ]
+    ],
+    providers: [
+        httpInterceptorProviders
+    ],
 })
 export class SharedModule { }
