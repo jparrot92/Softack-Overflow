@@ -32,6 +32,7 @@ export async function signin(req: Request, res: Response): Promise<Response | vo
       });
     }
 
+    // 86400 Segundos = 1 Días
     const token = jwt.sign({ user }, secret, { expiresIn: 86400 });
     res.status(200).json({
       message: 'Login succede',

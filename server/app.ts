@@ -32,9 +32,16 @@ export class App {
   private cors() {
     if (process.env.NODE_ENV === 'development') {
       this.app.use((req, res, next) => {
-        res.setHeader('Access-Control-Allow-Origin', '*');
-        res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Request-With, Content-Type, Accept');
-        res.setHeader('Access-Control-Allow-Methods', 'POST, GET, PATCH, DELETE, OPTIONS');
+        res.header('Access-Control-Allow-Origin', '*');
+        res.header(
+          'Access-Control-Allow-Headers',
+          'Origin, X-Requested-With,' +
+          ' Content-Type, Accept,' +
+          ' Authorization,' +
+          ' Access-Control-Allow-Credentials'
+        );
+        res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
+        res.header('Allow', 'GET, POST, OPTIONS, PUT, DELETE');
         next();
       });
     }

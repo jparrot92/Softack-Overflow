@@ -1,6 +1,7 @@
 import { NextFunction, Request, Response } from 'express';
 import { secret } from '../config/config';
 import jwt from 'jsonwebtoken';
+import moment from 'moment';
 
 export const users = [
   {
@@ -18,16 +19,42 @@ export interface RequestWithUser extends Request {
   user: object | string;
 }
 
-export function isAuthenticated(req: RequestWithUser, res: Response, next: NextFunction): void {
-  jwt.verify(req.query.token, secret, (err, token) => {
-    if (err) {
+export async function isAuthenticated(req: RequestWithUser, res: Response, next: NextFunction): Promise<Response | void> {
+  try {
+
+    if (!req.headers.authorization) {
       return res.status(401).json({
-        message: 'Unauthorized',
-        error: err
+        error: {
+          status: 403,
+          message: 'La petición no tiene la cabecera de autenticación'
+        }
       });
     }
 
-    req.user = token.user;
-    next();
-  });
+    const token = req.headers.authorization.toString().replace('Bearer ', '');
+
+
+    const user: object | string | any = jwt.verify(token, secret);
+
+    if (user.exp <= moment().unix()) {
+      return res.status(401).json({
+        error: {
+          status: 401,
+          message: 'El token ha expirado'
+        }
+      });
+    }
+
+    req.user = user;
+
+    return next();
+
+  } catch (e) {
+    return res.status(401).json({
+      error: {
+        status: 404,
+        message: 'El token no es válido'
+      }
+    });
+  }
 }
