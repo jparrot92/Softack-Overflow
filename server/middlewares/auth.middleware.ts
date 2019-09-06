@@ -33,10 +33,9 @@ export async function isAuthenticated(req: RequestWithUser, res: Response, next:
 
     const token = req.headers.authorization.toString().replace('Bearer ', '');
 
+    const tokenExp = jwt.decode(token, secret).exp;
 
-    const user: object | string | any = jwt.verify(token, secret);
-
-    if (user.exp <= moment().unix()) {
+    if (tokenExp <= moment().unix()) {
       return res.status(401).json({
         error: {
           status: 401,
@@ -45,11 +44,14 @@ export async function isAuthenticated(req: RequestWithUser, res: Response, next:
       });
     }
 
+    const user: object | string = jwt.verify(token, secret);
+
     req.user = user;
 
     return next();
 
   } catch (e) {
+    console.log(e);
     return res.status(401).json({
       error: {
         status: 404,
