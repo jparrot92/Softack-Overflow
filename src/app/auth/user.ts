@@ -1,13 +1,7 @@
-export class User {
-  constructor(
-    public email: string,
-    public password: string,
-    public id?: string,
-    public firstName?: string,
-    public lastName?: string
-  ) { }
-
-  fullName() {
-    return `${this.firstName} ${this.lastName}`;
-  }
+export interface User {
+  email: string;
+  password: string;
+  id?: string;
+  firstName?: string;
+  lastName?: string;
 }

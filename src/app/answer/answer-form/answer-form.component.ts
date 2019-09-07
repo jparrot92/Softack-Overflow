@@ -21,10 +21,10 @@ export class AnswerFormComponent {
   }
 
   onSubmit(form: NgForm) {
-    const answer = new Answer(
-      form.value.description,
-      this.question
-    );
+    const answer = {
+      description: form.value.description,
+      question: this.question,
+    };
 
     this.questionService.addAnswer(answer).subscribe(
       a => {

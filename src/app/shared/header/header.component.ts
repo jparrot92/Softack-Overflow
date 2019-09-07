@@ -15,8 +15,8 @@ export class HeaderComponent {
     return this.authService.isLoggedIn();
   }
 
-  fullName() {
-    return this.authService.currentUser.fullName();
+  getUser() {
+    return this.authService.getUser();
   }
 
   logout() {

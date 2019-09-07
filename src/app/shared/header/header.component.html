@@ -12,7 +12,7 @@
     </button>
     <mat-menu #menu="matMenu">
       <button mat-menu-item disabled>
-        {{ fullName() }}
+        {{ getUser().firstName }} {{ getUser().lastName }}
       </button>
       <button mat-menu-item (click)="logout()">
         Cerrar Sesión
