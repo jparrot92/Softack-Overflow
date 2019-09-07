@@ -12,24 +12,21 @@ import { User } from './user';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-  usersUrl: string;
-  currentUser?: User;
 
+  usersUrl: string;
+  user: User;
+  token: string;
 
   constructor(private http: HttpClient, private router: Router) {
     this.usersUrl = urljoin(environment.apiUrl, 'auth');
-    if (this.isLoggedIn()) {
-      const { userId, email, firstName, lastName } = JSON.parse(localStorage.getItem('user'));
-      this.currentUser = new User(email, null, firstName, lastName, userId);
-    }
   }
 
   signIn(user: User): Observable<any> {
     return this.http.post(urljoin(this.usersUrl, 'signin'), user).pipe(
-        catchError(e => {
-          return throwError(e);
-        })
-      );
+      catchError(e => {
+        return throwError(e);
+      })
+    );
   }
 
   signUp(user: User): Observable<any> {
@@ -41,7 +38,6 @@ export class AuthService {
   }
 
   login = ({ token, userId, firstName, lastName, email }) => {
-    this.currentUser = new User(email, null, firstName, lastName);
     localStorage.setItem('token', token);
     localStorage.setItem('user', JSON.stringify({ userId, firstName, lastName, email }));
     this.router.navigateByUrl('/');
@@ -52,23 +48,19 @@ export class AuthService {
   }
 
   logout() {
+    this.token = null;
+    this.user = null;
     localStorage.clear();
-    this.currentUser = null;
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
     this.router.navigateByUrl('/');
   }
 
-  private handleError(error: HttpErrorResponse) {
-    if (error.error instanceof ErrorEvent) {
-      console.error('An error ocurred: ', error.error.message);
-    } else {
-      console.error(
-        error.error
-      );
+  getUser() {
+    if (this.isLoggedIn()) {
+      return this.user = JSON.parse(localStorage.getItem('user'));
     }
-
-    return throwError(
-      'something bad happened; please try again later.'
-    );
+    return null;
   }
 
 }
