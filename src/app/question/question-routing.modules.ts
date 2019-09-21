@@ -6,10 +6,9 @@ import { QuestionDetailComponent } from './question-detail/question-detail.compo
 import { QuestionFormComponent } from './question-form/question-form.component';
 
 const routes = [
-  { path: '', component: QuestionListComponent, pathMatch: 'full' },
+  { path: 'questions', component: QuestionListComponent },
   {
     path: 'questions', children: [
-      { path: '', component: QuestionListComponent },
       { path: 'new', component: QuestionFormComponent},
       { path: ':id', component: QuestionDetailComponent }
     ]
