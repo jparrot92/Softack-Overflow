@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import jwt from 'jsonwebtoken';
 import { secret } from '../config/config';
-import { users, findUserByEmail } from '../middlewares/auth.middleware';
+import { AuthService } from '../services';
 
 function comparePasswords(providedPassword, userPassword) {
   return providedPassword === userPassword;
@@ -12,7 +12,7 @@ const createToken = (user) => jwt.sign({ user }, secret, { expiresIn: 86400 });
 export async function signin(req: Request, res: Response): Promise<Response | void> {
   try {
     const { email, password } = req.body;
-    const user = findUserByEmail(email);
+    const user = AuthService.findUserByEmail(email);
 
     if (!user) {
       return res.status(401).json({
@@ -50,25 +50,17 @@ export async function signin(req: Request, res: Response): Promise<Response | vo
 
 export async function signup(req: Request, res: Response): Promise<Response | void> {
   try {
-    const { firstName, lastName, email, password } = req.body;
-    const user = {
-      id: +new Date(),
-      firstName,
-      lastName,
-      email,
-      password
-    };
 
-    users.push(user);
+    const user = AuthService.createUser(req);
 
     const token = createToken(user);
     res.status(201).json({
       message: 'User saved',
       token,
       userId: user.id,
-      firstName,
-      lastName,
-      email
+      firstName: user.firstName,
+      lastName: user.lastName,
+      email: user.email
     });
   } catch (e) {
     console.log(e);
