@@ -1,4 +1,4 @@
-import { Question } from '@app/question/question';
+import { Question } from '@app/question/models/question';
 import { User } from '@app/auth/user';
 
 export interface Answer {

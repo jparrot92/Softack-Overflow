@@ -14,12 +14,10 @@ import { FormsModule } from '@angular/forms';
 import { MomentModule } from 'ngx-moment';
 
 // Components question
-import { QuestionListComponent } from './question-list/question-list.component';
-import { QuestionDetailComponent } from './question-detail/question-detail.component';
-import { QuestionFormComponent } from './question-form/question-form.component';
-
-// Modul answer
-import { AnswerModule } from '@app/answer/answer.module';
+import { QuestionListComponent } from './components/question/question-list/question-list.component';
+import { QuestionDetailComponent } from './components/question/question-detail/question-detail.component';
+import { QuestionFormComponent } from './components/question/question-form/question-form.component';
+import { AnswerFormComponent } from './components/answer/answer-form/answer-form.component';
 
 @NgModule({
   imports: [
@@ -27,13 +25,13 @@ import { AnswerModule } from '@app/answer/answer.module';
     SharedModule,
     QuestionRoutingModule,
     FormsModule,
-    MomentModule,
-    AnswerModule
+    MomentModule
   ],
   declarations: [
     QuestionListComponent,
     QuestionDetailComponent,
-    QuestionFormComponent
+    QuestionFormComponent,
+    AnswerFormComponent
   ]
 })
 export class QuestionModule { }

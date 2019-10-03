@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { Question } from '../question';
+import { Question } from '../../../models/question';
 import icons from './icons';
-import { QuestionService } from '../question.services';
+import { QuestionService } from '../../../question.services';
 import { Router } from '@angular/router';
 
 @Component({

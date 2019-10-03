@@ -1,8 +1,8 @@
 import { Component, Input } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { Answer } from '../answer';
-import { Question } from '@app/question/question';
-import { QuestionService } from '@app/question/question.services';
+import { Answer } from '../../../models/answer';
+import { Question } from '../../../models/question';
+import { QuestionService } from '../../../question.services';
 import SweetScroll from 'sweet-scroll';
 
 @Component({
