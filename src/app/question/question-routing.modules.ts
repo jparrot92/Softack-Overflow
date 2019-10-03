@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
-import { QuestionListComponent } from './question-list/question-list.component';
-import { QuestionDetailComponent } from './question-detail/question-detail.component';
-import { QuestionFormComponent } from './question-form/question-form.component';
+import { QuestionListComponent } from './components/question/question-list/question-list.component';
+import { QuestionDetailComponent } from './components/question/question-detail/question-detail.component';
+import { QuestionFormComponent } from './components/question/question-form/question-form.component';
 
 const routes = [
   { path: 'questions', component: QuestionListComponent },

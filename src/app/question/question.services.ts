@@ -4,12 +4,12 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
-import { Question } from './question';
+import { Question } from './models/question';
 
 import { environment } from '@env/environment';
 
 import urljoin from 'url-join';
-import { Answer } from '@app/answer/answer';
+import { Answer } from '@app/question/models/answer';
 
 @Injectable()
 export class QuestionService {
